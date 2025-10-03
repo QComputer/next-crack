@@ -1,0 +1,618 @@
+/* Reset + Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #c05b2d;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: #fdfdfd;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Grid Layouts */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Cards */
+.card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #fff;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: #fff;
+  padding: 3rem 2rem;
+}
+
+footer a {
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+/* About Section */
+.about {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* Roast Profiling */
+.roast-section {
+  padding: 5rem 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.roast-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.roast-section .subtitle {
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 2rem;
+}
+
+/* Feature Cards inside Swiper */
+.feature-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 2rem;
+  background: #fafafa;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #c05b2d;
+}
+
+
+/* Products Section */
+.products-section {
+  padding: 5rem 2rem;
+  background: #fafafa;
+  text-align: center;
+}
+
+.products-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Product Cards */
+.product-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 2rem;
+  background: #fff;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card .image-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.product-card .rating {
+  color: #f5a623;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-card .price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #c05b2d;
+}
+
+/* Special Discount Section */
+.discount-section {
+  padding: 5rem 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.discount-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Layout */
+.discount-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .discount-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  gap: 1rem;
+}
+
+.time-box {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 70px;
+  text-align: center;
+  border: 1px solid #eee;
+}
+
+.time-box span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.time-box small {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Discount Card */
+.discount-card {
+  position: relative;
+  text-align: left;
+  padding: 2rem;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fafafa;
+  width: 300px;
+}
+
+.discount-card .badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e63946;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.discount-card .image-placeholder {
+  width: 100%;
+  height: 160px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.discount-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.discount-card p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.discount-card .rating {
+  color: #f5a623;
+  margin-bottom: 0.5rem;
+}
+
+.discount-card .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #c05b2d;
+}
+
+
+/* Offers Section */
+.offers-section {
+  padding: 5rem 2rem;
+  background: #fafafa;
+  text-align: center;
+}
+
+.offers-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Offer Cards */
+.offer-card {
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 2rem;
+  background: #fff;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+}
+
+.offer-card .badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #c05b2d;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.offer-card .image-placeholder {
+  width: 100%;
+  height: 160px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.offer-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.offer-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.offer-card .rating {
+  color: #f5a623;
+  margin-bottom: 0.5rem;
+}
+
+.offer-card .price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #c05b2d;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: #fff;
+  padding: 3rem 2rem 1.5rem;
+  margin-top: 3rem;
+}
+
+.footer-container {
+  display: grid;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .footer-container {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+.footer-brand h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-brand p {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.6;
+}
+
+/* Links */
+.footer-links h4,
+.footer-socials h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a {
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #fff;
+}
+
+/* Socials */
+.footer-socials .social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-socials a {
+  font-size: 1.5rem;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #c05b2d;
+}
+
+/* Bottom */
+.footer-bottom {
+  border-top: 1px solid #444;
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+
+/* Courses */
+.courses-section {
+  padding: 5rem 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.courses-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.course-card {
+  text-align: left;
+}
+
+.course-card .image-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.course-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.course-card p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.course-card .course-meta {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.course-card .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #c05b2d;
+}
+
+/* Blog */
+.blog-section {
+  padding: 5rem 2rem;
+  background: #fafafa;
+  text-align: center;
+}
+
+.blog-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.blog-card {
+  text-align: left;
+}
+
+.blog-card .image-placeholder {
+  width: 100%;
+  height: 160px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.blog-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.blog-card p {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.blog-card .date {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.blog-card .read-more {
+  color: #c05b2d;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.blog-card .read-more:hover {
+  color: #a9441d;
+}
+
+
