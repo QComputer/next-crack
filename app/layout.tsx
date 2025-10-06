@@ -1,24 +1,11 @@
-import Navbar from "@/components/Navbar";
 import "./globals.css";
-import type { Metadata } from "next";
-import Footer from "@/components/Footer";
+import { LanguageProvider } from "./LanguageProvider";
 
-export const metadata: Metadata = {
-  title: "Crack Coffee",
-  description: "Coffee roasting & training platform",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );
