@@ -1,38 +1,32 @@
 "use client";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useLang } from "../LanguageProvider";
+import { translations } from "../translations";
 
 export default function Products() {
+  const { language } = useLang();
+  const t = translations[language];
+
   const products = [
-    { name: "Espresso Blend", desc: "Rich & caramel", price: "1,500,000" },
-    { name: "Ethiopia Single Origin", desc: "Floral & juicy", price: "1,800,000" },
-    { name: "Colombian Roast", desc: "Smooth & sweet", price: "1,600,000" },
+    { name: language === "English" ? "Espresso Blend" : language === "فارسی" ? "بلند اسپرسو" : "مزيج الإسبريسو", price: "₫ 1,500,000", img: "/images/espresso.jpg" },
+    { name: language === "English" ? "Cold Brew Bottle" : language === "فارسی" ? "بطری کلد برو" : "زجاجة كولد برو", price: "₫ 1,200,000", img: "/images/coldbrew.jpg" },
+    { name: language === "English" ? "Filter Coffee" : language === "فارسی" ? "قهوه فیلتری" : "قهوة مفلترة", price: "₫ 1,600,000", img: "/images/filter.jpg" },
   ];
 
   return (
     <section id="products" className="products-section">
-      <h2>New Product</h2>
-      <Swiper
-        modules={[Navigation, Pagination]}
-        navigation
-        pagination={{ clickable: true }}
-        spaceBetween={20}
-        slidesPerView={1}
-        breakpoints={{ 768:{slidesPerView:2}, 1024:{slidesPerView:3} }}
-      >
-        {products.map((p, i)=>(
+      <h2>{t.products.title}</h2>
+      <Swiper modules={[Navigation, Pagination]} navigation pagination={{ clickable: true }} spaceBetween={20} breakpoints={{640:{slidesPerView:1},900:{slidesPerView:2},1200:{slidesPerView:3}}}>
+        {products.map((p, i) => (
           <SwiperSlide key={i}>
             <div className="product-card">
-              <div className="bag">
-                <img src={`https://images.unsplash.com/photo-1510627498534-cf7e9002facc?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=7d85b2b4bb2f8d4eab1e3c0f0f4b9a2b`} alt={p.name} style={{width:"100%", height:"100%", objectFit:"cover", borderRadius:10}} />
-              </div>
+              <div className="bag"><img src={p.img} alt={p.name} style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:10}}/></div>
               <h3 style={{fontSize:16, marginBottom:6}}>{p.name}</h3>
-              <p style={{color:"var(--muted)", fontSize:13}}>{p.desc}</p>
-              <div style={{marginTop:8, fontWeight:700, color:"var(--brown)"}}>₫ {p.price}</div>
+              <p style={{color:"var(--muted)", fontSize:13}}>{p.price}</p>
             </div>
           </SwiperSlide>
         ))}

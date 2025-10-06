@@ -1,17 +1,16 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Lang = "English" | "فارسی" | "العربية";
-
-const LangContext = createContext<{
-  language: Lang;
-  setLanguage: (lang: Lang) => void;
-}>({ language: "English", setLanguage: () => {} });
+const LangContext = createContext<{ language: Lang; setLanguage: (l: Lang) => void }>({
+  language: "English",
+  setLanguage: () => {},
+});
 
 export const useLang = () => useContext(LangContext);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Lang>("English");
 
   useEffect(() => {
@@ -21,14 +20,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem("language", language);
-    document.documentElement.setAttribute(
-      "lang",
-      language === "English" ? "en" : language === "فارسی" ? "fa" : "ar"
-    );
-    document.documentElement.setAttribute(
-      "dir",
-      language === "English" ? "ltr" : "rtl"
-    );
+    document.documentElement.setAttribute("lang", language === "English" ? "en" : language === "فارسی" ? "fa" : "ar");
+    document.documentElement.setAttribute("dir", language === "English" ? "ltr" : "rtl");
   }, [language]);
 
   return (

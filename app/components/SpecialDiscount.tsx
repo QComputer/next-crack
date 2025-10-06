@@ -1,50 +1,46 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Image from "next/image";
+import { useLang } from "../LanguageProvider";
+import { translations } from "../translations";
 
 export default function SpecialDiscount() {
-  const [t, setT] = useState({days:0,hours:0,minutes:0,seconds:0});
-  useEffect(()=>{
-    const target = new Date().getTime() + 2 * 24 * 3600 * 1000 + 5 * 3600 * 1000; // 2 days + 5h
-    const id = setInterval(()=>{
-      const now = Date.now();
-      const diff = Math.max(0, target - now);
-      setT({
-        days: Math.floor(diff / (1000*60*60*24)),
-        hours: Math.floor((diff / (1000*60*60)) % 24),
-        minutes: Math.floor((diff / (1000*60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
-      if(diff<=0) clearInterval(id);
-    }, 1000);
-    return ()=>clearInterval(id);
-  },[]);
+  const { language } = useLang();
+  const t = translations[language];
+
+  const products = [
+    { id: 1, name: language === "English" ? "Espresso Blend" : language === "فارسی" ? "بلند اسپرسو" : "مزيج الإسبريسو", price: "$24.99", old: "$32.99", img: "/images/espresso.jpg" },
+    { id: 2, name: language === "English" ? "Cold Brew Bottle" : language === "فارسی" ? "بطری کلد برو" : "زجاجة كولد برو", price: "$12.50", old: "$18.00", img: "/images/coldbrew.jpg" },
+    { id: 3, name: language === "English" ? "Filter Coffee" : language === "فارسی" ? "قهوه فیلتری" : "قهوة مفلترة", price: "$16.00", old: "$21.50", img: "/images/filter.jpg" },
+  ];
 
   return (
-    <section id="discount" className="discount-section">
-      <div style={{flex:1}}>
-        <h2>SPECIAL DISCOUNT</h2>
-        <p style={{color:"var(--muted)", marginTop:8}}>Limited time offer — grab it while it lasts.</p>
-        <div className="countdown" style={{marginTop:12}}>
-          <div className="time-box"><div style={{fontWeight:700, fontSize:18}}>{String(t.days).padStart(2,"0")}</div><div style={{fontSize:12,color:"var(--muted)"}}>Days</div></div>
-          <div className="time-box"><div style={{fontWeight:700, fontSize:18}}>{String(t.hours).padStart(2,"0")}</div><div style={{fontSize:12,color:"var(--muted)"}}>Hours</div></div>
-          <div className="time-box"><div style={{fontWeight:700, fontSize:18}}>{String(t.minutes).padStart(2,"0")}</div><div style={{fontSize:12,color:"var(--muted)"}}>Mins</div></div>
-          <div className="time-box"><div style={{fontWeight:700, fontSize:18}}>{String(t.seconds).padStart(2,"0")}</div><div style={{fontSize:12,color:"var(--muted)"}}>Secs</div></div>
-        </div>
-      </div>
+    <section className="special-discount" id="discount">
+      <div className="discount-container">
+        <h2 className="discount-title">{t.discount.title}</h2>
 
-      <div style={{flex:0}}>
-        <div className="discount-card">
-          <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=700&auto=format&fit=crop&ixlib=rb-4.0.3&s=906b6f8d1b8b4c9a5f2fd1f3b2a6d3c7" alt="pack" style={{width:120, height:120, objectFit:"cover", borderRadius:10}} />
-          <div>
-            <h3 style={{marginBottom:6}}>Latte Art Training</h3>
-            <p style={{color:"var(--muted)", fontSize:13, marginBottom:8}}>Learn latte art from industry professionals — limited seats.</p>
-            <div style={{fontWeight:700, color:"var(--green)"}}>Now ₫2,450,000</div>
-            <div style={{marginTop:8}}>
-              <button className="btn" style={{padding:"8px 14px", borderRadius:10}}>Buy Now</button>
-            </div>
-          </div>
-        </div>
+        <Swiper modules={[Navigation, Pagination]} navigation pagination={{ clickable: true }} spaceBetween={20} slidesPerView={1} breakpoints={{640:{slidesPerView:2},1024:{slidesPerView:3}}} dir={language === "English" ? "ltr" : "rtl"}>
+          {products.map((p) => (
+            <SwiperSlide key={p.id}>
+              <div className="discount-card">
+                <div className="discount-img">
+                  <img src={p.img} alt={p.name} style={{width:"100%",height:200,objectFit:"cover"}} />
+                  <span className="discount-badge">{language === "English" ? "25% OFF" : language === "فارسی" ? "۲۵٪ تخفیف" : "خصم 25٪"}</span>
+                </div>
+
+                <div className="discount-info">
+                  <h3>{p.name}</h3>
+                  <div className="price"><span className="new">{p.price}</span><span className="old">{p.old}</span></div>
+                  <button className="buy-btn">{language === "English" ? "Add to Cart" : language === "فارسی" ? "افزودن به سبد" : "أضف إلى السلة"}</button>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );

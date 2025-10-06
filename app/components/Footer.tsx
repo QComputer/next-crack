@@ -1,51 +1,57 @@
 "use client";
-
-import Link from "next/link";
+import { useLang } from "../LanguageProvider";
+import { translations } from "../translations";
+import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 
 export default function Footer(){
+  const { language } = useLang();
+  const t = translations[language];
+  const isRTL = language !== "English";
+
   return (
-    <footer>
-      <div className="footer-grid" style={{maxWidth:1200, margin:"0 auto"}}>
-        <div>
-          <div style={{display:"flex", alignItems:"center", gap:12}}>
-            <div className="mark" style={{background:"var(--brown)", width:56, height:56, borderRadius:12, display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700}}>CR</div>
-            <div>
-              <div style={{fontWeight:700, color:"#fff"}}>Crack Coffee</div>
-              <div style={{fontSize:12, color:"#bfbfbf"}}>Roasting & Profiling</div>
-            </div>
-          </div>
-          <p style={{marginTop:12, color:"#bfbfbf"}}>Empowering coffee lovers with tools, courses, and products to perfect their craft.</p>
-        </div>
-
-        <div>
-          <h4 style={{color:"#fff", marginBottom:10}}>Customer Service</h4>
-          <ul style={{listStyle:"none", color:"#bfbfbf"}}>
-            <li><Link href="#" style={{color:"#bfbfbf"}}>Contact Us</Link></li>
-            <li><Link href="#" style={{color:"#bfbfbf"}}>Track Order</Link></li>
-            <li><Link href="#" style={{color:"#bfbfbf"}}>Return & Exchange</Link></li>
+    <footer className={`footer ${isRTL ? "rtl" : ""}`}>
+      <div className="footer-top">
+        <div className="footer-col">
+          <h4>{t.footer.customerService}</h4>
+          <ul>
+            <li>{language === "English" ? "Contact Us" : language === "فارسی" ? "تماس با ما" : "اتصل بنا"}</li>
+            <li>{language === "English" ? "Shipping Info" : language === "فارسی" ? "اطلاعات ارسال" : "معلومات الشحن"}</li>
+            <li>{language === "English" ? "Returns" : language === "فارسی" ? "بازگشت کالا" : "الإرجاع"}</li>
           </ul>
         </div>
 
-        <div>
-          <h4 style={{color:"#fff", marginBottom:10}}>Policies</h4>
-          <ul style={{listStyle:"none", color:"#bfbfbf"}}>
-            <li><Link href="#" style={{color:"#bfbfbf"}}>Privacy Policy</Link></li>
-            <li><Link href="#" style={{color:"#bfbfbf"}}>Terms & Conditions</Link></li>
+        <div className="footer-col">
+          <h4>{t.footer.policies}</h4>
+          <ul>
+            <li>{language === "English" ? "Privacy Policy" : language === "فارسی" ? "سیاست حفظ حریم خصوصی" : "سياسة الخصوصية"}</li>
+            <li>{language === "English" ? "Terms" : language === "فارسی" ? "شرایط" : "الشروط"}</li>
+            <li>{language === "English" ? "Refund Policy" : language === "فارسی" ? "سیاست بازپرداخت" : "سياسة الاسترداد"}</li>
           </ul>
         </div>
 
-        <div>
-          <h4 style={{color:"#fff", marginBottom:10}}>Quick Links</h4>
-          <ul style={{listStyle:"none", color:"#bfbfbf"}}>
-            <li><Link href="#products" style={{color:"#bfbfbf"}}>Products</Link></li>
-            <li><Link href="#courses" style={{color:"#bfbfbf"}}>Courses</Link></li>
-            <li><Link href="#offers" style={{color:"#bfbfbf"}}>Offers</Link></li>
+        <div className="footer-col">
+          <h4>{t.footer.quickLinks}</h4>
+          <ul>
+            <li>{language === "English" ? "About Us" : language === "فارسی" ? "درباره ما" : "من نحن"}</li>
+            <li>{language === "English" ? "Courses" : language === "فارسی" ? "دوره‌ها" : "الدورات"}</li>
+            <li>{language === "English" ? "Blog" : language === "فارسی" ? "بلاگ" : "مدونة"}</li>
           </ul>
+        </div>
+
+        <div className="footer-col">
+          <h4>{t.footer.cafeHours}</h4>
+          <p>{language === "English" ? "Mon–Fri: 8AM–9PM" : language === "فارسی" ? "دوشنبه تا جمعه: ۸ صبح تا ۹ شب" : "الإثنين–الجمعة: 8 صباحًا - 9 مساءً"}</p>
+          <p>{language === "English" ? "Sat–Sun: 9AM–6PM" : language === "فارسی" ? "شنبه تا یکشنبه: ۹ صبح تا ۶ عصر" : "السبت–الأحد: 9 صباحًا - 6 مساءً"}</p>
         </div>
       </div>
 
-      <div style={{borderTop:"1px solid rgba(255,255,255,0.06)", marginTop:24, paddingTop:18, textAlign:"center", color:"#bfbfbf"}}>
-        © {new Date().getFullYear()} Crack Coffee. All rights reserved.
+      <div className="footer-bottom">
+        <div className="social-icons">
+          <FaInstagram />
+          <FaFacebook />
+          <FaTwitter />
+        </div>
+        <p>© {new Date().getFullYear()} {language === "English" ? "Crack Coffee. All rights reserved." : language === "فارسی" ? "کراک کافی. تمامی حقوق محفوظ است." : "كراك كوفي. جميع الحقوق محفوظة."}</p>
       </div>
     </footer>
   );
